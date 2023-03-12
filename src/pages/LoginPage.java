@@ -6,35 +6,37 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage extends BasePage {
 
     // Locators
-    private final String inputUsernameLocator = "username";
-    private final String inputPasswordLocator = "password";
-    private final String buttonSigninLocator = "signin-button";
-    private final String messageLoginErrorLocator = "message";
+    private final String locatorInputUsername = "username";
+    private final String locatorInputPassword = "password";
+    private final String locatorButtonSignIn = "signin-button";
+    private final String locatorMessageLoginError = "message";
+
     // By locators
-    private By inputUsername = By.id(inputUsernameLocator);
-    private By inputPassword = By.id(inputPasswordLocator);
-    private By buttonSignin = By.id(buttonSigninLocator);
+    private By elementInputUsername = By.id(locatorInputUsername);
+    private By elementInputPassword = By.id(locatorInputPassword);
+    private By elementButtonSignin = By.id(locatorButtonSignIn);
+    private By elementMessageLoginError = By.id(locatorMessageLoginError);
 
-    private By messageLoginError = By.id(messageLoginErrorLocator);
-
+    // Constructor
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void enterUsername(String username) {
-        sendKeys(inputUsernameLocator, inputUsername, username);
+    // Methods
+    public void enterInputUsername(String username) {
+        sendKeys(locatorInputUsername, elementInputUsername, username);
     }
 
-    public void enterPassword(String password) {
-        sendKeys(inputPasswordLocator, inputPassword, password);
+    public void enterInputPassword(String password) {
+        sendKeys(locatorInputPassword, elementInputPassword, password);
     }
 
-    public WebDriver clickSignInButton() {
-        clickElement(buttonSigninLocator, buttonSignin);
+    public WebDriver clickButtonSignIn() {
+        clickElement(locatorButtonSignIn, elementButtonSignin);
         return getWebDriver();
     }
 
-    public String getMessageLoginError() {
-        return getElementText(messageLoginErrorLocator, messageLoginError);
+    public String getTextMessageLoginError() {
+        return getElementText(locatorMessageLoginError, elementMessageLoginError);
     }
 }

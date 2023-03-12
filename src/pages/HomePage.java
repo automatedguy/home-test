@@ -6,44 +6,27 @@ import org.openqa.selenium.WebDriver;
 public class HomePage extends BasePage {
 
     // Locators
-    private final String menuHomeLocator = "menu-home";
-    private final String menuFormLocator = "menu-form";
-    private final String menuGridLocator = "menu-grid";
-    private final String menuSearchLocator = "menu-search";
-    private final String labelWelcomeLocator = "welcome";
-    private final String labelUsernameLocator = "username";
+    private final String locatorTextWelcomeMessage = "//div[@id='welcome-message']/h2";
+    private final String locatorTextUsername = "[data-id='username']";
 
     // By locators
-    private By menuHome = By.cssSelector(".topnav a[href='/home']");
-    private By menuForm = By.cssSelector(".topnav a[href='/checkout']");
-    private By menuGrid = By.cssSelector(".topnav a[href='/grid']");
-    private By menuSearch = By.cssSelector(".topnav a[href='/search']");
-    private By labelWelcome = By.xpath("//div[@id='welcome-message']/h2");
-    private By labelUsername = By.cssSelector("[data-id='username']");
+    private By elementTextWelcomeMessage = By.xpath(locatorTextWelcomeMessage);
+    private By elementTextUsername = By.cssSelector(locatorTextUsername);
 
+    // Components
+    private TopNavigationPage topNavigationPage;
+
+    // Constructor
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+        topNavigationPage = new TopNavigationPage(webDriver);
     }
-    public WebDriver clickMenuHome() {
-        clickElement(menuHomeLocator, menuHome);
-        return getWebDriver();
+
+    // Methods
+    public String getTextWelcomeMessage() {
+        return getElementText(locatorTextWelcomeMessage, elementTextWelcomeMessage);
     }
-    public WebDriver clickMenuForm() {
-        clickElement(menuFormLocator, menuForm);
-        return getWebDriver();
-    }
-    public WebDriver clickMenuGrid() {
-        clickElement(menuGridLocator, menuGrid);
-        return getWebDriver();
-    }
-    public WebDriver clickMenuSearch() {
-        clickElement(menuSearchLocator, menuSearch);
-        return getWebDriver();
-    }
-    public String getWelcomeMessage() {
-        return getElementText(labelWelcomeLocator, labelWelcome);
-    }
-    public String getUsername() {
-        return getElementText(labelUsernameLocator, labelUsername);
+    public String getElementTextUsername() {
+        return getElementText(locatorTextUsername, elementTextUsername);
     }
 }

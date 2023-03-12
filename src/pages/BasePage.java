@@ -9,21 +9,25 @@ import java.time.Duration;
 import java.util.logging.Logger;
 
 public abstract class BasePage {
+
+    // Fields
     private WebDriver webDriver;
     private final Logger logger = Logger.getLogger("BasePage");
     private WebDriverWait wait;
-
     private final Duration timeoutInSeconds = Duration.ofSeconds(10);
 
+    // Constructor
     protected BasePage(WebDriver webDriver) {
         this.webDriver = webDriver;
         wait = new WebDriverWait(webDriver, timeoutInSeconds);
     }
 
+    // Methods
     protected WebDriver getWebDriver() {
         return webDriver;
     }
 
+    // Methods
     protected void clickElement(String elementDescription, By elementLocator) {
         logger.info("Clicking on " + elementDescription);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
