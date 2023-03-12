@@ -2,37 +2,47 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.logging.Logger;
 
 public abstract class BasePage {
     private WebDriver webDriver;
-    public final Logger logger = Logger.getLogger("BasePage");
+    private final Logger logger = Logger.getLogger("BasePage");
+    private WebDriverWait wait;
 
-    public BasePage(WebDriver webDriver) {
+    private final Duration timeoutInSeconds = Duration.ofSeconds(10);
+
+    protected BasePage(WebDriver webDriver) {
         this.webDriver = webDriver;
+        wait = new WebDriverWait(webDriver, timeoutInSeconds);
     }
 
-    public WebDriver getWebDriver() {
+    protected WebDriver getWebDriver() {
         return webDriver;
     }
 
-    public void clickElement(String elementDescription, By elementLocator) {
+    protected void clickElement(String elementDescription, By elementLocator) {
         logger.info("Clicking on " + elementDescription);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         webDriver.findElement(elementLocator).click();
     }
 
-    public void sendKeys(String elementDescription, By elementLocator, String inputText) {
+    protected void sendKeys(String elementDescription, By elementLocator, String inputText) {
         logger.info("Sending keys to " + elementDescription + " : " + inputText);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         webDriver.findElement(elementLocator).sendKeys(inputText);
     }
 
-    public String getElementText(String elementDescription, By elementLocator) {
+    protected String getElementText(String elementDescription, By elementLocator) {
         logger.info("Getting text from " + elementDescription);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         return webDriver.findElement(elementLocator).getText();
     }
 
-    public boolean getElementStatus() {
+    protected boolean getElementStatus() {
         return false;
     }
 
