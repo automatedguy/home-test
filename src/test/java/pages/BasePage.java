@@ -43,10 +43,10 @@ public abstract class BasePage {
         webDriver.findElement(elementLocator).sendKeys(inputText);
     }
 
-    protected String getTextElement(String elementDescription, By elementLocator) {
+    protected WebElement getElement(String elementDescription, By elementLocator) {
         logger.info("Getting text from " + elementDescription);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
-        return webDriver.findElement(elementLocator).getText();
+        return webDriver.findElement(elementLocator);
     }
 
     protected List<WebElement> getElementList(String elementDescription, By elementLocator) {

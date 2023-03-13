@@ -2,6 +2,7 @@ package test.java.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class SearchPage extends BasePage {
 
@@ -27,16 +28,16 @@ public class SearchPage extends BasePage {
         clickElement(locatorButtonSearch, elementButtonSearch);
     }
 
-    public String getTextSearchResult() {
-        if(getTextElement(locatorTextSearchResult, elementTextSearchResult).equals("searching...")) {
+    public WebElement getSearchResult() {
+        if(getElement(locatorTextSearchResult, elementTextSearchResult).equals("searching...")) {
             // TODO: improve this wait somehow
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            getTextSearchResult();
+            getSearchResult();
         }
-        return getTextElement(locatorTextSearchResult, elementTextSearchResult);
+        return getElement(locatorTextSearchResult, elementTextSearchResult);
     }
 }

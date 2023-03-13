@@ -22,8 +22,8 @@ public class LoginTest extends BaseTest {
         loginPage.enterTextUsername(System.getProperty("credential.username"));
         loginPage.enterTextPassword(System.getProperty("credential.password"));
         HomePage homePage = new HomePage(loginPage.clickButtonSignIn());
-        softAssert.assertEquals(homePage.getTextWelcomeMessage(), EXPECTED_WELCOME_MESSAGE_TEXT);
-        softAssert.assertEquals(homePage.getTextUsername(), EXPECTED_USERNAME_TEXT);
+        softAssert.assertEquals(homePage.getWelcomeMessage().getText(), EXPECTED_WELCOME_MESSAGE_TEXT);
+        softAssert.assertEquals(homePage.getUsername().getText(), EXPECTED_USERNAME_TEXT);
         softAssert.assertAll();
     }
     @Test
@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest {
         loginPage.enterTextUsername("wrongusername");
         loginPage.enterTextPassword("wrongpassword");
         loginPage.clickButtonSignIn();
-        softAssert.assertEquals(loginPage.getTextMessageLoginError(), EXPECTED_LOGIN_ERROR_MESSAGE_TEXT);
+        softAssert.assertEquals(loginPage.getMessageLoginError().getText(), EXPECTED_LOGIN_ERROR_MESSAGE_TEXT);
     }
     @Test
     public void verifyLoginFailureBlankCredentials() {
@@ -42,6 +42,6 @@ public class LoginTest extends BaseTest {
         loginPage.enterTextUsername("");
         loginPage.enterTextPassword("");
         loginPage.clickButtonSignIn();
-        softAssert.assertEquals(loginPage.getTextMessageLoginError(), EXPECTED_LOGIN_ERROR_MESSAGE);
+        softAssert.assertEquals(loginPage.getMessageLoginError().getText(), EXPECTED_LOGIN_ERROR_MESSAGE);
     }
 }

@@ -30,7 +30,7 @@ public class SearchTest extends BaseTest {
 
         searchPage.enterTextSearch(INPUT_SEARCH_TEXT);
         searchPage.clickButtonSearch();
-        softAssert.assertEquals(searchPage.getTextSearchResult(), EXPECTED_SEARCH_RESULT);
+        softAssert.assertEquals(searchPage.getSearchResult().getText(), EXPECTED_SEARCH_RESULT);
         softAssert.assertAll();
 
     }
@@ -43,7 +43,7 @@ public class SearchTest extends BaseTest {
 
         searchPage.enterTextSearch(INPUT_SEARCH_TEXT);
         searchPage.clickButtonSearch();
-        softAssert.assertEquals(searchPage.getTextSearchResult(), EXPECTED_SEARCH_RESULT);
+        softAssert.assertEquals(searchPage.getSearchResult().getText(), EXPECTED_SEARCH_RESULT);
         softAssert.assertAll();
     }
 

@@ -2,6 +2,7 @@ package test.java.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import test.java.pages.components.TopNavigationPage;
 
 public class HomePage extends BasePage {
@@ -24,11 +25,11 @@ public class HomePage extends BasePage {
     }
 
     // Methods
-    public String getTextWelcomeMessage() {
-        return getTextElement(locatorTextWelcomeMessage, byTextWelcomeMessage);
+    public WebElement getWelcomeMessage() {
+        return getElement(locatorTextWelcomeMessage, byTextWelcomeMessage);
     }
-    public String getTextUsername() {
-        return getTextElement(locatorTextUsername, byTextUsername);
+    public WebElement getUsername() {
+        return getElement(locatorTextUsername, byTextUsername);
     }
 
     public TopNavigationPage getTopNavigationPage() {

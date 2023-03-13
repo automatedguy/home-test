@@ -30,7 +30,7 @@ public class CartPage extends BasePage {
     }
 
     public int getPriceTotal(){
-        return Integer.parseInt(getTextElement(locatorTextPriceTotal, elementTextPriceTotal).replace("$", ""));
+        return Integer.parseInt(getElement(locatorTextPriceTotal, elementTextPriceTotal).getText().replace("$", ""));
     }
 
 }

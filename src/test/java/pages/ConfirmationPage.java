@@ -2,6 +2,7 @@ package test.java.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class ConfirmationPage extends BasePage {
 
@@ -19,11 +20,11 @@ public class ConfirmationPage extends BasePage {
     }
 
     // Methods
-    public String getTextOrderConfirmed(){
-        return getTextElement(locatorTextOrderConfirmed, byTextOrderConfirmed);
+    public WebElement getOrderConfirmed(){
+        return getElement(locatorTextOrderConfirmed, byTextOrderConfirmed);
     }
 
-    public String getTextOrderNumber(){
-        return getTextElement(locatorTextOrderNumber, byTextOrderNumber);
+    public WebElement getOrderNumber(){
+        return getElement(locatorTextOrderNumber, byTextOrderNumber);
     }
 }
