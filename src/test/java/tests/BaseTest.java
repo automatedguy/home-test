@@ -51,6 +51,9 @@ public abstract class BaseTest {
     private void startBrowser() {
         logger.info("Starting browser");
         ChromeOptions chromeOptions = new ChromeOptions();
+        // Added workarund for Chromedriver bug https://github.com/SeleniumHQ/selenium/issues/11750
+        // [🐛 Bug]: Chrome 111 is not compatible with default HTTP Client #11750
+        chromeOptions.addArguments("--remote-allow-origins=*");
         webDriver = new ChromeDriver(chromeOptions);
     }
 
