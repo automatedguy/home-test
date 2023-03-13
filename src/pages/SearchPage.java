@@ -29,6 +29,7 @@ public class SearchPage extends BasePage {
 
     public String getTextSearchResult() {
         if(getTextElement(locatorTextSearchResult, elementTextSearchResult).equals("searching...")) {
+            // TODO: improve this wait somehow
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {

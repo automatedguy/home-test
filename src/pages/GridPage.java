@@ -48,25 +48,32 @@ public class GridPage extends BasePage {
         return gridItemIndex;
     }
     public WebElement getElementGridItemName(int elementIndex){
+        // TODO: implement get element from list on the base page
         getLogger().info("Getting item name: " + getElementGridItem(elementIndex).findElement(byGridItemName).getText());
         return getElementGridItem(elementIndex).findElement(byGridItemName);
     }
 
     public WebElement getElementGridItemNumber(int elementIndex){
+        // TODO: implement get element from list on the base page
         getLogger().info("Getting item number: " + getElementGridItem(elementIndex).findElement(byGridItemNumber).getText());
         return getElementGridItem(elementIndex).findElement(byGridItemNumber);
     }
 
     public WebElement getElementGridItemPrice(int elementIndex){
+        // TODO: implement get element from list on the base page
         getLogger().info("Getting item price: " + getElementGridItem(elementIndex).findElement(byGridItemPrice).getText());
         return getElementGridItem(elementIndex).findElement(byGridItemPrice);
     }
 
     public WebElement getElementGridItemImage(int elementIndex){
+        // TODO: implement get element from list on the base page
+        getLogger().info("Getting item image: " + elementIndex);
         return getElementGridItem(elementIndex).findElement(byGridItemImage);
     }
 
     public WebElement getElementGridItemButton(int elementIndex){
+        // TODO: implement get element from list on the base page
+        getLogger().info("Getting item button: " + elementIndex);
         return getElementGridItem(elementIndex).findElement(byGridItemButton);
     }
 
