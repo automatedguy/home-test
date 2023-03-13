@@ -49,7 +49,7 @@ public abstract class BasePage {
         return webDriver.findElement(elementLocator).getText();
     }
 
-    protected List<WebElement> getTextElementList(String elementDescription, By elementLocator) {
+    protected List<WebElement> getElementList(String elementDescription, By elementLocator) {
         logger.info("Getting text element list from " + elementDescription);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         return webDriver.findElements(elementLocator);
@@ -67,5 +67,9 @@ public abstract class BasePage {
         logger.info("Checking if element is selected" + elementDescription);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         return webDriver.findElement(elementLocator).isSelected();
+    }
+
+    protected Logger getLogger(){
+        return logger;
     }
 }

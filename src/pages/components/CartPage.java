@@ -24,7 +24,7 @@ public class CartPage extends BasePage {
     // Methods
     public int getPriceListSum(){
         int totalPriceSum = 0;
-        for(WebElement element : getTextElementList(locatorTextPriceList, elementTextPriceList))
+        for(WebElement element : getElementList(locatorTextPriceList, elementTextPriceList))
             totalPriceSum = totalPriceSum + Integer.parseInt(element.getText().replace("$", ""));
         return totalPriceSum;
     }
