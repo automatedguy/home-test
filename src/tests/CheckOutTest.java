@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.CheckoutPage;
+import pages.ConfirmationPage;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -14,6 +15,7 @@ public class CheckOutTest extends BaseTest {
     private LoginPage loginPage;
     private HomePage homePage;
     private CheckoutPage checkoutPage;
+    private ConfirmationPage confirmationPage;
 
     @DataProvider(name = "check_out_form_data")
     public Object[][] checkoutFormData() {
@@ -35,10 +37,18 @@ public class CheckOutTest extends BaseTest {
     public void verifyCheckoutFormOrderSuccess(String fullName, String email, String address, String city, String state,
                                                String zipCode, String nameOnCard, String creditCardNumber, String expirationMonth,
                                                String expirationYear, String cvv) {
+        final String EXPECTED_ORDER_CONFIRMED_TEXT = "Order Confirmed!";
+        final String EXPECTED_ORDER_NUMBER_TEXT = "Order Number:";
+        SoftAssert softAssert = new SoftAssert();
         final boolean shippingAddressSameAsBilling = true;
+
         checkoutPage.getBillingAddressPage().populateBillingAddress(fullName, email, address, city, state, zipCode, shippingAddressSameAsBilling);
-        checkoutPage.getPaymentInformationPage().populatePaymentInformation(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
-        checkoutPage.clickButtonContinueToCheckout();
+        checkoutPage.getPaymentFormPage().populatePaymentForm(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
+        confirmationPage = new ConfirmationPage(checkoutPage.clickButtonContinueToCheckout());
+        softAssert.assertEquals(confirmationPage.getTextOrderConfirmed(), EXPECTED_ORDER_CONFIRMED_TEXT);
+        softAssert.assertEquals(confirmationPage.getTextOrderNumber().substring(0,13), EXPECTED_ORDER_NUMBER_TEXT);
+        softAssert.assertNotNull(confirmationPage.getTextOrderNumber().substring(14, 18));
+        softAssert.assertAll();
 
     }
 
@@ -51,7 +61,7 @@ public class CheckOutTest extends BaseTest {
         final boolean shippingAddressSameAsBilling = false;
 
         checkoutPage.getBillingAddressPage().populateBillingAddress(fullName, email, address, city, state, zipCode, shippingAddressSameAsBilling);
-        checkoutPage.getPaymentInformationPage().populatePaymentInformation(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
+        checkoutPage.getPaymentFormPage().populatePaymentForm(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
         checkoutPage.clickButtonContinueToCheckout();
         Alert alert = getWebDriver().switchTo().alert();
         softAssert.assertEquals(alert.getText(), EXPECTED_ALERT_TEXT);

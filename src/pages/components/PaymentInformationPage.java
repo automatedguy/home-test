@@ -46,7 +46,7 @@ public class PaymentInformationPage extends BasePage {
         sendKeys(locatorTextCvv, byTextCvv, cvv);
     }
 
-    public void populatePaymentInformation(String nameOnCard, String creditCardNumber, String expirationMonth, String expirationYear, String cvv) {
+    public void populatePaymentForm(String nameOnCard, String creditCardNumber, String expirationMonth, String expirationYear, String cvv) {
         enterTextNameOnCard(nameOnCard);
         enterTextCreditCardNumber(creditCardNumber);
         setSelectExpirationMonth(expirationMonth);

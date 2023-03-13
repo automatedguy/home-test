@@ -30,7 +30,7 @@ public class CheckoutPage extends BasePage {
         return billingAddressPage;
     }
 
-    public PaymentInformationPage getPaymentInformationPage() {
+    public PaymentInformationPage getPaymentFormPage() {
         return paymentInformationPage;
     }
     public WebDriver clickButtonContinueToCheckout() {
