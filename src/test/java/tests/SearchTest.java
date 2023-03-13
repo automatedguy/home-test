@@ -1,11 +1,11 @@
-package tests;
+package test.java.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.SearchPage;
+import test.java.pages.HomePage;
+import test.java.pages.LoginPage;
+import test.java.pages.SearchPage;
 
 public class SearchTest extends BaseTest {
 

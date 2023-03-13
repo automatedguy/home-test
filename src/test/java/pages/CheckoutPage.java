@@ -1,10 +1,10 @@
-package pages;
+package test.java.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.components.BillingAddressPage;
-import pages.components.CartPage;
-import pages.components.PaymentInformationPage;
+import test.java.pages.components.BillingAddressPage;
+import test.java.pages.components.CartPage;
+import test.java.pages.components.PaymentInformationPage;
 
 public class CheckoutPage extends BasePage {
 

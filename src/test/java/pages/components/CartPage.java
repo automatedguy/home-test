@@ -1,9 +1,9 @@
-package pages.components;
+package test.java.pages.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import test.java.pages.BasePage;
 
 public class CartPage extends BasePage {
 

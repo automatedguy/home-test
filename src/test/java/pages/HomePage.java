@@ -1,8 +1,8 @@
-package pages;
+package test.java.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.components.TopNavigationPage;
+import test.java.pages.components.TopNavigationPage;
 
 public class HomePage extends BasePage {
 

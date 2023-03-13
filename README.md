@@ -13,10 +13,10 @@
 2. Run the image
 `docker run -p 3100:3100 automaticbytes/demo-app`
 
-3. Verify the app is shown in below url and set it as the base url for the tests.
+3. Verify the app is shown in below url and set it as the base url for the test.java.tests.
 `http://localhost:3100`
 
-4. Fork this repository and develop your tests following bellow guidances/requisites.
+4. Fork this repository and develop your test.java.tests following bellow guidances/requisites.
 
 5. When finished open a Pull Request for Code Review.
 
@@ -36,9 +36,9 @@
 	- Firefox
 
 ### General test requisites
-- All tests should provide a setup and tear down mechanism that opens and closes the browser.
-- All tests should run successfully either from IDE or command line.
-- Instructions to build and run the code and tests submitted must be provided.
+- All test.java.tests should provide a setup and tear down mechanism that opens and closes the browser.
+- All test.java.tests should run successfully either from IDE or command line.
+- Instructions to build and run the code and test.java.tests submitted must be provided.
 - Submitted code implementing a Page Object Model will be taken in high consideration.
 
 ### Tests Scenarios

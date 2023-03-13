@@ -1,4 +1,4 @@
-package tests;
+package test.java.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import utils.ConfigProperties;
+import test.java.utils.ConfigProperties;
 
 import java.util.logging.Logger;
 
