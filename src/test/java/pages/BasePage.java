@@ -1,5 +1,6 @@
 package test.java.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -74,6 +75,10 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.invisibilityOfElementWithText(elementLocator, text));
     }
 
+    public Alert getAlert() {
+        wait.until(ExpectedConditions.alertIsPresent());
+        return webDriver.switchTo().alert();
+    }
     protected Logger getLogger(){
         return logger;
     }

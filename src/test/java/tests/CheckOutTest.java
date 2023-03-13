@@ -41,7 +41,6 @@ public class CheckOutTest extends BaseTest {
         final String EXPECTED_ORDER_NUMBER_TEXT = "Order Number:";
         SoftAssert softAssert = new SoftAssert();
         final boolean shippingAddressSameAsBilling = true;
-
         checkoutPage.getBillingAddressPage().populateBillingAddress(fullName, email, address, city, state, zipCode, shippingAddressSameAsBilling);
         checkoutPage.getPaymentFormPage().populatePaymentForm(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
         confirmationPage = new ConfirmationPage(checkoutPage.clickButtonContinueToCheckout());
@@ -49,7 +48,6 @@ public class CheckOutTest extends BaseTest {
         softAssert.assertEquals(confirmationPage.getOrderNumber().getText().substring(0,13), EXPECTED_ORDER_NUMBER_TEXT);
         softAssert.assertNotNull(confirmationPage.getOrderNumber().getText().substring(14, 18));
         softAssert.assertAll();
-
     }
 
     @Test(dataProvider = "check_out_form_data")
@@ -59,11 +57,10 @@ public class CheckOutTest extends BaseTest {
         final String EXPECTED_ALERT_TEXT = "Shipping address same as billing checkbox must be selected.";
         SoftAssert softAssert = new SoftAssert();
         final boolean shippingAddressSameAsBilling = false;
-
         checkoutPage.getBillingAddressPage().populateBillingAddress(fullName, email, address, city, state, zipCode, shippingAddressSameAsBilling);
         checkoutPage.getPaymentFormPage().populatePaymentForm(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
         checkoutPage.clickButtonContinueToCheckout();
-        Alert alert = getWebDriver().switchTo().alert();
+        Alert alert = checkoutPage.getAlert();
         softAssert.assertEquals(alert.getText(), EXPECTED_ALERT_TEXT);
         alert.accept();
         softAssert.assertAll();
@@ -73,7 +70,6 @@ public class CheckOutTest extends BaseTest {
     public void verifyCheckoutFormOrderCartTotal(){
         final int EXPECTED_CART_PRICE_TOTAL = 30;
         SoftAssert softAssert = new SoftAssert();
-
         softAssert.assertEquals(checkoutPage.getCartPage().getPriceListSum(), EXPECTED_CART_PRICE_TOTAL);
         softAssert.assertEquals(checkoutPage.getCartPage().getPriceTotal(), EXPECTED_CART_PRICE_TOTAL);
         softAssert.assertAll();
