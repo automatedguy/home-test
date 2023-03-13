@@ -71,6 +71,11 @@ public class CheckOutTest extends BaseTest {
 
     @Test
     public void verifyCheckoutFormOrderCartTotal(){
+        final int EXPECTED_CART_PRICE_TOTAL = 30;
+        SoftAssert softAssert = new SoftAssert();
 
+        softAssert.assertEquals(checkoutPage.getCartPage().getPriceListSum(), EXPECTED_CART_PRICE_TOTAL);
+        softAssert.assertEquals(checkoutPage.getCartPage().getPriceTotal(), EXPECTED_CART_PRICE_TOTAL);
+        softAssert.assertAll();
     }
 }

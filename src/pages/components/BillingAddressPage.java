@@ -54,7 +54,7 @@ public class BillingAddressPage extends BasePage {
     }
 
     public void clickCheckboxShippingAddressSameAsBilling(boolean checked) {
-        if (isElementSelected(byCheckboxShippingAddressSameAsBilling) != checked) {
+        if (isElementSelected(locatorCheckboxShippingAddressSameAsBilling, byCheckboxShippingAddressSameAsBilling) != checked) {
             clickElement(locatorCheckboxShippingAddressSameAsBilling, byCheckboxShippingAddressSameAsBilling);
         }
     }

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.logging.Logger;
 
 public abstract class BasePage {
@@ -48,6 +49,12 @@ public abstract class BasePage {
         return webDriver.findElement(elementLocator).getText();
     }
 
+    protected List<WebElement> getTextElementList(String elementDescription, By elementLocator) {
+        logger.info("Getting text element list from " + elementDescription);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
+        return webDriver.findElements(elementLocator);
+    }
+
     protected void selectOption(String elementDescription, By elementLocator, String selectOption) {
         logger.info("Selecting option from " + elementDescription + " : " + selectOption);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
@@ -56,11 +63,9 @@ public abstract class BasePage {
         select.selectByVisibleText(selectOption);
     }
 
-    protected boolean isElementSelected(By elementLocator) {
+    protected boolean isElementSelected(String elementDescription, By elementLocator) {
+        logger.info("Checking if element is selected" + elementDescription);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         return webDriver.findElement(elementLocator).isSelected();
     }
-    protected boolean getElementStatus() {
-        return false;
-    }
-
 }
