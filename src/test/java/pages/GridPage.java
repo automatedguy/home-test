@@ -9,20 +9,20 @@ import java.util.List;
 public class GridPage extends BasePage {
 
     // String locators
-    private final String locatorGridItemList = "(//div[@class='item'])";
-    private final String locatorGridItemName = "h4";
-    private final String locatorGridItemNumber = "label[@data-test-id='card-number']";
-    private final String locatorGridItemPrice = "p";
-    private final String locatorGridItemImage = "img";
-    private final String locatorGridItemButton = "button";
+    private final String locatorItemList = "(//div[@class='item'])";
+    private final String locatorItemName = "h4";
+    private final String locatorItemNumber = "label[@data-test-id='card-number']";
+    private final String locatorItemPrice = "p";
+    private final String locatorItemImage = "img";
+    private final String locatorItemButton = "button";
 
     // Element locators
-    private By byGridItemList = By.xpath(locatorGridItemList);
-    private By byGridItemNumber = By.xpath(locatorGridItemNumber);
-    private By byGridItemName = By.xpath(locatorGridItemName);
-    private By byGridItemPrice = By.xpath(locatorGridItemPrice);
-    private By byGridItemImage = By.xpath(locatorGridItemImage);
-    private By byGridItemButton = By.xpath(locatorGridItemButton);
+    private By byItemList = By.xpath(locatorItemList);
+    private By byItemNumber = By.xpath(locatorItemNumber);
+    private By byItemName = By.xpath(locatorItemName);
+    private By byItemPrice = By.xpath(locatorItemPrice);
+    private By byItemImage = By.xpath(locatorItemImage);
+    private By byItemButton = By.xpath(locatorItemButton);
 
     // Constructor
     public GridPage(WebDriver webDriver) {
@@ -31,50 +31,45 @@ public class GridPage extends BasePage {
 
     // Methods
     public List<WebElement> getElementGridItemList(){
-        return getElementList(locatorGridItemList, byGridItemList);
+        return getElementList(locatorItemList, byItemList);
     }
 
-    private WebElement getElementGridItem(int elementIndex){
-        return getElementList(locatorGridItemList, byGridItemList).get(elementIndex);
+    private WebElement getItem(int elementIndex){
+        return getElementList(locatorItemList, byItemList).get(elementIndex);
     }
 
-    public int getElementGridItemIndex(String elementNumber){
+    public int getItemIndex(String elementNumber){
         int gridItemIndex = 0;
         for(int index = 0; index < getElementGridItemList().size(); index++) {
-            if (getElementGridItemNumber(index).getText().equals(elementNumber)) {
+            if (geItemNumber(index).getText().equals(elementNumber)) {
                 gridItemIndex = index;
             }
         }
         return gridItemIndex;
     }
-    public WebElement getElementGridItemName(int elementIndex){
-        // TODO: implement get element from list on the base page
-        getLogger().info("Getting item name: " + getElementGridItem(elementIndex).findElement(byGridItemName).getText());
-        return getElementGridItem(elementIndex).findElement(byGridItemName);
+    public WebElement getItemName(int index){
+        getLogger().info("Getting item name: " + getItem(index).findElement(byItemName).getText());
+        return getItem(index).findElement(byItemName);
     }
 
-    public WebElement getElementGridItemNumber(int elementIndex){
-        // TODO: implement get element from list on the base page
-        getLogger().info("Getting item number: " + getElementGridItem(elementIndex).findElement(byGridItemNumber).getText());
-        return getElementGridItem(elementIndex).findElement(byGridItemNumber);
+    public WebElement geItemNumber(int index){
+        getLogger().info("Getting item number: " + getItem(index).findElement(byItemNumber).getText());
+        return getItem(index).findElement(byItemNumber);
     }
 
-    public WebElement getElementGridItemPrice(int elementIndex){
-        // TODO: implement get element from list on the base page
-        getLogger().info("Getting item price: " + getElementGridItem(elementIndex).findElement(byGridItemPrice).getText());
-        return getElementGridItem(elementIndex).findElement(byGridItemPrice);
+    public WebElement getItemPrice(int index){
+        getLogger().info("Getting item price: " + getItem(index).findElement(byItemPrice).getText());
+        return getItem(index).findElement(byItemPrice);
     }
 
-    public WebElement getElementGridItemImage(int elementIndex){
-        // TODO: implement get element from list on the base page
-        getLogger().info("Getting item image: " + elementIndex);
-        return getElementGridItem(elementIndex).findElement(byGridItemImage);
+    public WebElement getItemImage(int index){
+        getLogger().info("Getting item image: " + index);
+        return getItem(index).findElement(byItemImage);
     }
 
-    public WebElement getElementGridItemButton(int elementIndex){
-        // TODO: implement get element from list on the base page
-        getLogger().info("Getting item button: " + elementIndex);
-        return getElementGridItem(elementIndex).findElement(byGridItemButton);
+    public WebElement getItemButton(int index){
+        getLogger().info("Getting item button: " + index);
+        return getItem(index).findElement(byItemButton);
     }
 
 }

@@ -26,25 +26,23 @@ public class GridTest extends BaseTest {
     @Test
     public void verifyGridItem() {
         SoftAssert softAssert = new SoftAssert();
-        final String EXPECTED_GRID_ITEM_POSITION = "7";
-        final String EXPECTED_GRID_ITEM_NAME = "Super Pepperoni";
-        final String EXPECTED_GRID_ITEM_PRICE = "$10";
-
-        int gridItemIndex = gridPage.getElementGridItemIndex(EXPECTED_GRID_ITEM_POSITION);
-        softAssert.assertEquals(gridPage.getElementGridItemName(gridItemIndex).getText(), EXPECTED_GRID_ITEM_NAME);
-        softAssert.assertEquals(gridPage.getElementGridItemPrice(gridItemIndex).getText(), EXPECTED_GRID_ITEM_PRICE);
+        final String EXPECTED_ITEM_POSITION = "7";
+        final String EXPECTED_ITEM_NAME = "Super Pepperoni";
+        final String EXPECTED_ITEM_PRICE = "$10";
+        int itemIndex = gridPage.getItemIndex(EXPECTED_ITEM_POSITION);
+        softAssert.assertEquals(gridPage.getItemName(itemIndex).getText(), EXPECTED_ITEM_NAME);
+        softAssert.assertEquals(gridPage.getItemPrice(itemIndex).getText(), EXPECTED_ITEM_PRICE);
         softAssert.assertAll();
     }
 
     @Test
     public void verifyAllGridItems() {
         SoftAssert softAssert = new SoftAssert();
-
         for(int index = 0; index < gridPage.getElementGridItemList().size(); index++) {
-            softAssert.assertTrue(gridPage.getElementGridItemName(index).isDisplayed());
-            softAssert.assertTrue(gridPage.getElementGridItemImage(index).isDisplayed());
-            softAssert.assertTrue(gridPage.getElementGridItemPrice(index).isDisplayed());
-            softAssert.assertTrue(gridPage.getElementGridItemButton(index).isDisplayed());
+            softAssert.assertTrue(gridPage.getItemName(index).isDisplayed());
+            softAssert.assertTrue(gridPage.getItemImage(index).isDisplayed());
+            softAssert.assertTrue(gridPage.getItemPrice(index).isDisplayed());
+            softAssert.assertTrue(gridPage.getItemButton(index).isDisplayed());
         }
         softAssert.assertAll();
     }
