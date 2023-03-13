@@ -5,6 +5,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -39,6 +40,7 @@ public abstract class BaseTest {
     private void configureWebDriver() {
         logger.info("Configuring web driver");
         WebDriverManager.chromedriver().setup();
+        // WebDriverManager.firefoxdriver().setup();
     }
 
     private void setProperties() {
@@ -50,11 +52,12 @@ public abstract class BaseTest {
 
     private void startBrowser() {
         logger.info("Starting browser");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        // Added workarund for Chromedriver bug https://github.com/SeleniumHQ/selenium/issues/11750
+        // Added workarund for Chrome related bug https://github.com/SeleniumHQ/selenium/issues/11750
         // [🐛 Bug]: Chrome 111 is not compatible with default HTTP Client #11750
+        ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         webDriver = new ChromeDriver(chromeOptions);
+        // webDriver = new FirefoxDriver();
     }
 
     private void maximizeBrowser() {
