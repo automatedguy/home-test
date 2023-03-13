@@ -29,15 +29,8 @@ public class SearchPage extends BasePage {
     }
 
     public WebElement getSearchResult() {
-        if(getElement(locatorTextSearchResult, elementTextSearchResult).equals("searching...")) {
-            // TODO: improve this wait somehow
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            getSearchResult();
-        }
+        final String SEARCHING_TEXT = "searching...";
+        waitElementTextChange(locatorTextSearchResult, elementTextSearchResult, SEARCHING_TEXT);
         return getElement(locatorTextSearchResult, elementTextSearchResult);
     }
 }

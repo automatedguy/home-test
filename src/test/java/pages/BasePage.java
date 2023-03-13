@@ -15,8 +15,8 @@ public abstract class BasePage {
 
     // Fields
     private WebDriver webDriver;
-    private final Logger logger = Logger.getLogger("BasePage");
     private WebDriverWait wait;
+    private final Logger logger = Logger.getLogger("BasePage");
     private final Duration timeoutInSeconds = Duration.ofSeconds(10);
 
     // Constructor
@@ -55,6 +55,12 @@ public abstract class BasePage {
         return webDriver.findElements(elementLocator);
     }
 
+    protected boolean isElementSelected(String elementDescription, By elementLocator) {
+        logger.info("Checking if element is selected" + elementDescription);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
+        return webDriver.findElement(elementLocator).isSelected();
+    }
+
     protected void selectOption(String elementDescription, By elementLocator, String selectOption) {
         logger.info("Selecting option from " + elementDescription + " : " + selectOption);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
@@ -63,10 +69,9 @@ public abstract class BasePage {
         select.selectByVisibleText(selectOption);
     }
 
-    protected boolean isElementSelected(String elementDescription, By elementLocator) {
-        logger.info("Checking if element is selected" + elementDescription);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
-        return webDriver.findElement(elementLocator).isSelected();
+    protected void waitElementTextChange(String elementDescription, By elementLocator, String text) {
+        logger.info("Getting text from " + elementDescription);
+        wait.until(ExpectedConditions.invisibilityOfElementWithText(elementLocator, text));
     }
 
     protected Logger getLogger(){

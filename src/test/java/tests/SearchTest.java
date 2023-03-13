@@ -27,12 +27,10 @@ public class SearchTest extends BaseTest {
         final String INPUT_SEARCH_TEXT = "automation";
         final String EXPECTED_SEARCH_RESULT = "Found one result for automation";
         SoftAssert softAssert = new SoftAssert();
-
         searchPage.enterTextSearch(INPUT_SEARCH_TEXT);
         searchPage.clickButtonSearch();
         softAssert.assertEquals(searchPage.getSearchResult().getText(), EXPECTED_SEARCH_RESULT);
         softAssert.assertAll();
-
     }
 
     @Test
@@ -40,11 +38,9 @@ public class SearchTest extends BaseTest {
         final String INPUT_SEARCH_TEXT = "";
         final String EXPECTED_SEARCH_RESULT = "Please provide a search word.";
         SoftAssert softAssert = new SoftAssert();
-
         searchPage.enterTextSearch(INPUT_SEARCH_TEXT);
         searchPage.clickButtonSearch();
         softAssert.assertEquals(searchPage.getSearchResult().getText(), EXPECTED_SEARCH_RESULT);
         softAssert.assertAll();
     }
-
 }
