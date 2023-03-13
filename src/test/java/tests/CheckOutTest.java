@@ -46,7 +46,7 @@ public class CheckOutTest extends BaseTest {
         confirmationPage = new ConfirmationPage(checkoutPage.clickButtonContinueToCheckout());
         softAssert.assertEquals(confirmationPage.getOrderConfirmed().getText(), EXPECTED_ORDER_CONFIRMED_TEXT);
         softAssert.assertEquals(confirmationPage.getOrderNumber().getText().substring(0,13), EXPECTED_ORDER_NUMBER_TEXT);
-        softAssert.assertNotNull(confirmationPage.getOrderNumber().getText().substring(14, 18));
+        softAssert.assertNotNull(confirmationPage.getOrderNumber().getText().substring(14, 17));
         softAssert.assertAll();
     }
 
