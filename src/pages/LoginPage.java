@@ -5,17 +5,17 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    // Locators
-    private final String locatorInputUsername = "username";
-    private final String locatorInputPassword = "password";
+    // String locators
+    private final String locatorTextUsername = "username";
+    private final String locatorTextPassword = "password";
     private final String locatorButtonSignIn = "signin-button";
     private final String locatorMessageLoginError = "message";
 
-    // By locators
-    private By elementInputUsername = By.id(locatorInputUsername);
-    private By elementInputPassword = By.id(locatorInputPassword);
-    private By elementButtonSignin = By.id(locatorButtonSignIn);
-    private By elementMessageLoginError = By.id(locatorMessageLoginError);
+    // Element locators
+    private By byTextUsername = By.id(locatorTextUsername);
+    private By byTextPassword = By.id(locatorTextPassword);
+    private By byButtonSignin = By.id(locatorButtonSignIn);
+    private By byMessageLoginError = By.id(locatorMessageLoginError);
 
     // Constructor
     public LoginPage(WebDriver webDriver) {
@@ -23,20 +23,20 @@ public class LoginPage extends BasePage {
     }
 
     // Methods
-    public void enterInputUsername(String username) {
-        sendKeys(locatorInputUsername, elementInputUsername, username);
+    public void enterTextUsername(String username) {
+        sendKeys(locatorTextUsername, byTextUsername, username);
     }
 
-    public void enterInputPassword(String password) {
-        sendKeys(locatorInputPassword, elementInputPassword, password);
+    public void enterTextPassword(String password) {
+        sendKeys(locatorTextPassword, byTextPassword, password);
     }
 
     public WebDriver clickButtonSignIn() {
-        clickElement(locatorButtonSignIn, elementButtonSignin);
+        clickElement(locatorButtonSignIn, byButtonSignin);
         return getWebDriver();
     }
 
     public String getTextMessageLoginError() {
-        return getElementText(locatorMessageLoginError, elementMessageLoginError);
+        return getTextElement(locatorMessageLoginError, byMessageLoginError);
     }
 }

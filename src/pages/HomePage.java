@@ -2,18 +2,19 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.components.TopNavigationPage;
 
 public class HomePage extends BasePage {
 
-    // Locators
+    // String locators
     private final String locatorTextWelcomeMessage = "//div[@id='welcome-message']/h2";
     private final String locatorTextUsername = "[data-id='username']";
 
-    // By locators
-    private By elementTextWelcomeMessage = By.xpath(locatorTextWelcomeMessage);
-    private By elementTextUsername = By.cssSelector(locatorTextUsername);
+    // Element locators
+    private By byTextWelcomeMessage = By.xpath(locatorTextWelcomeMessage);
+    private By byTextUsername = By.cssSelector(locatorTextUsername);
 
-    // Components
+    // Page components
     private TopNavigationPage topNavigationPage;
 
     // Constructor
@@ -24,9 +25,13 @@ public class HomePage extends BasePage {
 
     // Methods
     public String getTextWelcomeMessage() {
-        return getElementText(locatorTextWelcomeMessage, elementTextWelcomeMessage);
+        return getTextElement(locatorTextWelcomeMessage, byTextWelcomeMessage);
     }
-    public String getElementTextUsername() {
-        return getElementText(locatorTextUsername, elementTextUsername);
+    public String getTextUsername() {
+        return getTextElement(locatorTextUsername, byTextUsername);
+    }
+
+    public TopNavigationPage getTopNavigationPage() {
+        return topNavigationPage;
     }
 }

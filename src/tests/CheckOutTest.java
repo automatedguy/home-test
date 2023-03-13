@@ -1,4 +1,66 @@
 package tests;
 
-public class CheckOutTest {
+import org.openqa.selenium.Alert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import pages.CheckoutPage;
+import pages.HomePage;
+import pages.LoginPage;
+
+public class CheckOutTest extends BaseTest {
+
+    private LoginPage loginPage;
+    private HomePage homePage;
+    private CheckoutPage checkoutPage;
+
+    @DataProvider(name = "check_out_form_data")
+    public Object[][] checkoutFormData() {
+        return new Object[][]{
+                {"John Doe", "johndoe@test.com", "123 Main St", "New York", "NY", "10001",
+                        "John Doe", "998987668", "November", "2027", "777"}
+        };
+    }
+    @BeforeMethod
+    public void performLoginAndNavigateToCheckout() {
+        loginPage = new LoginPage(getWebDriver());
+        loginPage.enterTextUsername(System.getProperty("credential.username"));
+        loginPage.enterTextPassword(System.getProperty("credential.password"));
+        homePage = new HomePage(loginPage.clickButtonSignIn());
+        checkoutPage = new CheckoutPage(homePage.getTopNavigationPage().clickLinkForm());
+    }
+
+    @Test(dataProvider = "check_out_form_data")
+    public void verifyCheckoutFormOrderSuccess(String fullName, String email, String address, String city, String state,
+                                               String zipCode, String nameOnCard, String creditCardNumber, String expirationMonth,
+                                               String expirationYear, String cvv) {
+        final boolean shippingAddressSameAsBilling = true;
+        checkoutPage.getBillingAddressPage().populateBillingAddress(fullName, email, address, city, state, zipCode, shippingAddressSameAsBilling);
+        checkoutPage.getPaymentInformationPage().populatePaymentInformation(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
+        checkoutPage.clickButtonContinueToCheckout();
+
+    }
+
+    @Test(dataProvider = "check_out_form_data")
+    public void verifyCheckoutFormOrderAlert(String fullName, String email, String address, String city, String state,
+                                             String zipCode, String nameOnCard, String creditCardNumber, String expirationMonth,
+                                             String expirationYear, String cvv){
+        final String EXPECTED_ALERT_TEXT = "Shipping address same as billing checkbox must be selected.";
+        SoftAssert softAssert = new SoftAssert();
+        final boolean shippingAddressSameAsBilling = false;
+
+        checkoutPage.getBillingAddressPage().populateBillingAddress(fullName, email, address, city, state, zipCode, shippingAddressSameAsBilling);
+        checkoutPage.getPaymentInformationPage().populatePaymentInformation(nameOnCard, creditCardNumber, expirationMonth, expirationYear, cvv);
+        checkoutPage.clickButtonContinueToCheckout();
+        Alert alert = getWebDriver().switchTo().alert();
+        softAssert.assertEquals(alert.getText(), EXPECTED_ALERT_TEXT);
+        alert.accept();
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void verifyCheckoutFormOrderCartTotal(){
+
+    }
 }

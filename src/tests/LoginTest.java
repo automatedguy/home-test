@@ -19,19 +19,19 @@ public class LoginTest extends BaseTest {
         final String EXPECTED_WELCOME_MESSAGE_TEXT = "Welcome!";
         final String EXPECTED_USERNAME_TEXT = System.getProperty("credential.username");
         SoftAssert softAssert = new SoftAssert();
-        loginPage.enterInputUsername(System.getProperty("credential.username"));
-        loginPage.enterInputPassword(System.getProperty("credential.password"));
+        loginPage.enterTextUsername(System.getProperty("credential.username"));
+        loginPage.enterTextPassword(System.getProperty("credential.password"));
         HomePage homePage = new HomePage(loginPage.clickButtonSignIn());
         softAssert.assertEquals(homePage.getTextWelcomeMessage(), EXPECTED_WELCOME_MESSAGE_TEXT);
-        softAssert.assertEquals(homePage.getElementTextUsername(), EXPECTED_USERNAME_TEXT);
+        softAssert.assertEquals(homePage.getTextUsername(), EXPECTED_USERNAME_TEXT);
         softAssert.assertAll();
     }
     @Test
     public void verifyLoginFailureWrongCredentials() {
         final String EXPECTED_LOGIN_ERROR_MESSAGE_TEXT = "Wrong credentials";
         SoftAssert softAssert = new SoftAssert();
-        loginPage.enterInputUsername("wrongusername");
-        loginPage.enterInputPassword("wrongpassword");
+        loginPage.enterTextUsername("wrongusername");
+        loginPage.enterTextPassword("wrongpassword");
         loginPage.clickButtonSignIn();
         softAssert.assertEquals(loginPage.getTextMessageLoginError(), EXPECTED_LOGIN_ERROR_MESSAGE_TEXT);
     }
@@ -39,8 +39,8 @@ public class LoginTest extends BaseTest {
     public void verifyLoginFailureBlankCredentials() {
         final String EXPECTED_LOGIN_ERROR_MESSAGE = "Fields can not be empty";
         SoftAssert softAssert = new SoftAssert();
-        loginPage.enterInputUsername("");
-        loginPage.enterInputPassword("");
+        loginPage.enterTextUsername("");
+        loginPage.enterTextPassword("");
         loginPage.clickButtonSignIn();
         softAssert.assertEquals(loginPage.getTextMessageLoginError(), EXPECTED_LOGIN_ERROR_MESSAGE);
     }
