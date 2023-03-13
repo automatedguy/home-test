@@ -63,13 +63,12 @@ public class GridPage extends BasePage {
     }
 
     public WebElement getItemImage(int index){
-        getLogger().info("Getting item image: " + index);
+        getLogger().info("Getting item image: " + getItem(index).findElement(byItemImage));
         return getItem(index).findElement(byItemImage);
     }
 
     public WebElement getItemButton(int index){
-        getLogger().info("Getting item button: " + index);
+        getLogger().info("Getting item button: " + getItem(index).findElement(byItemButton));
         return getItem(index).findElement(byItemButton);
     }
-
 }

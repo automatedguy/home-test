@@ -56,11 +56,6 @@ public abstract class BasePage {
         return webDriver.findElements(elementLocator);
     }
 
-    protected WebElement getElementFromList(List<WebElement> elementList, String elementDescription, By elementLocator, int elementIndex) {
-        logger.info("Getting text from list " + elementDescription + ": " + elementList.get(elementIndex).findElement(elementLocator).getText());
-        return elementList.get(elementIndex).findElement(elementLocator);
-    }
-
     protected boolean isElementSelected(String elementDescription, By elementLocator) {
         logger.info("Checking if element is selected" + elementDescription);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
@@ -83,5 +78,9 @@ public abstract class BasePage {
     public Alert getAlert() {
         wait.until(ExpectedConditions.alertIsPresent());
         return webDriver.switchTo().alert();
+    }
+
+    public Logger getLogger(){
+        return logger;
     }
 }
