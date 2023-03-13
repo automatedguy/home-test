@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SearchPage;
@@ -23,12 +24,27 @@ public class SearchTest extends BaseTest {
 
     @Test
     public void verifySearchSuccess() {
+        final String INPUT_SEARCH_TEXT = "automation";
+        final String EXPECTED_SEARCH_RESULT = "Found one result for automation";
+        SoftAssert softAssert = new SoftAssert();
+
+        searchPage.enterTextSearch(INPUT_SEARCH_TEXT);
+        searchPage.clickButtonSearch();
+        softAssert.assertEquals(searchPage.getTextSearchResult(), EXPECTED_SEARCH_RESULT);
+        softAssert.assertAll();
 
     }
 
     @Test
     public void verifySearchEmpty() {
+        final String INPUT_SEARCH_TEXT = "";
+        final String EXPECTED_SEARCH_RESULT = "Please provide a search word.";
+        SoftAssert softAssert = new SoftAssert();
 
+        searchPage.enterTextSearch(INPUT_SEARCH_TEXT);
+        searchPage.clickButtonSearch();
+        softAssert.assertEquals(searchPage.getTextSearchResult(), EXPECTED_SEARCH_RESULT);
+        softAssert.assertAll();
     }
 
 }
