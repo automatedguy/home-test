@@ -40,6 +40,7 @@ public abstract class BaseTest {
     private void configureWebDriver() {
         logger.info("Configuring web driver");
         WebDriverManager.chromedriver().setup();
+        // Comment out the above line (42) and uncomment the below line (44) to use Firefox
         // WebDriverManager.firefoxdriver().setup();
     }
 
@@ -57,6 +58,7 @@ public abstract class BaseTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         webDriver = new ChromeDriver(chromeOptions);
+        // Comment out the above lines(58 to 60) and uncomment the below line (62) to use Firefox
         // webDriver = new FirefoxDriver();
     }
 
