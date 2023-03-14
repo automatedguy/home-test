@@ -26,6 +26,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertEquals(homePage.getUsername().getText(), EXPECTED_USERNAME_TEXT);
         softAssert.assertAll();
     }
+
     @Test
     public void verifyLoginFailureWrongCredentials() {
         final String EXPECTED_LOGIN_ERROR_MESSAGE_TEXT = "Wrong credentials";
@@ -35,6 +36,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickButtonSignIn();
         softAssert.assertEquals(loginPage.getMessageLoginError().getText(), EXPECTED_LOGIN_ERROR_MESSAGE_TEXT);
     }
+    
     @Test
     public void verifyLoginFailureBlankCredentials() {
         final String EXPECTED_LOGIN_ERROR_MESSAGE = "Fields can not be empty";

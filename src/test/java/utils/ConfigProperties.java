@@ -32,7 +32,7 @@ public class ConfigProperties {
             throw new RuntimeException(e);
         }
     }
-    
+
     public static String getProperty(String key) {
         logger.info("Getting property: " + key);
         return properties.getProperty(key);
